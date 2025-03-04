@@ -12,6 +12,7 @@ class AuthController extends Controller
     try {
         // Lấy user đang đăng nhập
         $user = auth()->user();
+        dd("aa", $user);
         if ($user) {
             // Xóa token hiện tại
             $request->user()->token()->revoke();

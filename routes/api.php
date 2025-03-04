@@ -24,4 +24,10 @@ use App\Http\Middleware\Authenticate;
 // Google Sign In
 Route::post('/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);
 Route::get('/callback', [GoogleController::class, 'loginCallback']);
-Route::middleware('auth:api')->post('/logout', [Authenticate::class, 'logout']);
+
+
+Route::middleware(['role'])->group(function () {
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+

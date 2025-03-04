@@ -34,21 +34,13 @@ class GoogleController extends Controller
                     'email' => $googleUser->email,
                     'name' => $googleUser->name,
                     'google_id' => $googleUser->id,
-                    'password' => bcrypt('123'), // Placeholder, not used for Google login
+                    'password' => bcrypt('123'),
                     'roles_id' => 2,
                 ]);
             }
 
-            // ✅ Generate Passport Token Correctly
-            $token = $user->createToken('GoogleLoginToken')->accessToken;
-
-            return response()->json([
-                'status' => 'google sign in successful',
-                'access_token' => $token,
-                'token_type' => 'Bearer',
-                'expires_at' => now()->addDays(15),
-                'data' => $user,
-            ], Response::HTTP_OK);
+            // ✅ Tạo token chỉ chứa email
+            return response()->json($user->createTokenWithEmail(), Response::HTTP_OK);
         } catch (\Exception $exception) {
             return response()->json([
                 'status' => 'google sign in failed',
@@ -56,4 +48,18 @@ class GoogleController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
     }
+
 }
+
+
+// // Lấy user từ token
+// $user = Auth::guard('api')->user();
+
+// if ($user) {
+//     return response()->json([
+//         'message' => 'Authenticated',
+//         'user' => $user
+//     ]);
+// } else {
+//     return response()->json(['error' => 'Unauthorized'], 401);
+// }
