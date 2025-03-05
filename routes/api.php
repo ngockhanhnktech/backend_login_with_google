@@ -22,12 +22,15 @@ use App\Http\Middleware\Authenticate;
 // });
 
 // Google Sign In
-Route::post('/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);
-Route::get('/callback', [GoogleController::class, 'loginCallback']);
+// Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl'])->name('google.login');
+// Route::get('/callback', [GoogleController::class, 'loginCallback']);
+
+// // Dashboard (protected)
+// Route::get('/dashboard', [GoogleController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
 
-Route::middleware(['role'])->group(function () {
-    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-});
+// Route::middleware(['role'])->group(function () {
+//     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+// });
 
 
