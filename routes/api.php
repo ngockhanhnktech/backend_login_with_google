@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\GoogleController;
+use App\Http\Controllers\AuthController;
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 // Google Sign In
-Route::post('/get-google-sign-in-url', [\App\Http\Controllers\Api\GoogleController::class, 'getGoogleSignInUrl']);
-Route::get('/callback', [\App\Http\Controllers\Api\GoogleController::class, 'loginCallback']);
+// Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl'])->name('google.login');
+// Route::get('/callback', [GoogleController::class, 'loginCallback']);
+
+// // Dashboard (protected)
+// Route::get('/dashboard', [GoogleController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+
+
+// Route::middleware(['role'])->group(function () {
+//     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+// });
+
+
