@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GoogleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\Authenticate;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +25,15 @@ Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl'])->name
 Route::get('/callback', [GoogleController::class, 'loginCallback']); // Google trả về backend
 
 // Dashboard đăng nhập
-Route::get('/dashboard', [GoogleController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+// Route::get('/dashboard', [GoogleController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+
+Route::get('/dashboard', [GoogleController::class, 'dashboard'])
+    ->name('dashboard')
+    ->middleware(['role']);
 
 
 Route::get('/logout', function () {
-    session()->flush(); // Xóa toàn bộ session
+    Auth::logout(); 
     return redirect('/login');
 })->name('logout');
 
