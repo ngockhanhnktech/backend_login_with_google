@@ -28,8 +28,7 @@ Route::get('/callback', [GoogleController::class, 'loginCallback']); // Google t
 // Route::get('/dashboard', [GoogleController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
 Route::get('/dashboard', [GoogleController::class, 'dashboard'])
-    ->name('dashboard')
-    ->middleware(['role']);
+    ->name('dashboard');
 
 
 Route::get('/logout', function () {

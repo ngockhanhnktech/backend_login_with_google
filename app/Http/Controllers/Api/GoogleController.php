@@ -38,6 +38,11 @@ class GoogleController extends Controller
                 ]
             );
             Auth::login($user, true); // Laravel sẽ lưu user vào Auth guard
+            $token = $user->createToken('MyApp')->accessToken;
+            return response()->json([
+                'user' => $user,
+                'token' => $token
+            ]);
             return redirect()->route('dashboard');
         } catch (\Exception $e) {
             return redirect()->route('login')->with('error', 'Đăng nhập thất bại!');
