@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GoogleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\Authenticate;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,3 +34,12 @@ use App\Http\Middleware\Authenticate;
 // });
 
 
+// Route::middleware(['auth.token', 'role'])->group(function () {
+//     Route::post('/admin/update-role', [AdminController::class, 'updateRole'])
+//         ->name('admin.updateRole');
+// });
+
+Route::middleware(['auth:api', 'role'])->group(function () {
+    Route::post('/admin/update-role', [AdminController::class, 'updateRole'])
+        ->name('admin.updateRole');
+});

@@ -44,12 +44,18 @@ return [
         ],
 
         'api' => [
-            'driver' => 'passport', // Ensure this is set to 'passport' if using Passport
+            'driver' => 'passport',
             'provider' => 'users',
         ],
     ],
 
 
+    // 'guards' => [
+    //     'api' => [
+    //         'driver' => 'passport',
+    //         'provider' => 'users',
+    //     ],
+    // ],
 
 
     /*
