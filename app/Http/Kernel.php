@@ -47,7 +47,7 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-         
+          
         ],
     ];
 
@@ -68,8 +68,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'role' => \App\Http\Middleware\RoleMiddleware::class,
-        'auth.api' => \Illuminate\Auth\Middleware\Authenticate::class,
-        'role' => \App\Http\Middleware\RoleMiddleware::class, // Middleware của bạn
+        // 'auth.token' => \App\Http\Middleware\AuthenticateByToken::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class, 
     ];
 }

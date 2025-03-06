@@ -32,8 +32,14 @@ use App\Http\Controllers\AdminController;
 // Route::middleware(['role'])->group(function () {
 //     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 // });
+
+
+// Route::middleware(['auth.token', 'role'])->group(function () {
+//     Route::post('/admin/update-role', [AdminController::class, 'updateRole'])
+//         ->name('admin.updateRole');
+// });
+
 Route::middleware(['auth:api', 'role'])->group(function () {
     Route::post('/admin/update-role', [AdminController::class, 'updateRole'])
         ->name('admin.updateRole');
 });
-

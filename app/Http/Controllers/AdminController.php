@@ -13,9 +13,8 @@ class AdminController extends Controller
     }
     public function updateRole(Request $request){
 
-    
         $user = auth()->user();
-
+        
         if($user->roles_id !=1){
             return response()->json(['error'=>'Unauthorized'],403);
         }
